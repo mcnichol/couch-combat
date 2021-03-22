@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Player1/Player1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player2/Player2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player2/Player2.gd" type="Script" id=3]
+[ext_resource path="res://Ball/Ball.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Assets/ping_pong_8bit_plop.ogg" type="AudioStream" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 696.338, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 46.8293, 378.326 )
+
+[node name="Level" type="Node"]
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0784314, 0.129412, 0.14902, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player1" parent="." instance=ExtResource( 1 )]
+position = Vector2( 40.7944, 389.009 )
+
+[node name="Player2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1245.93, 350.208 )
+script = ExtResource( 3 )
+
+[node name="Ball" parent="." instance=ExtResource( 4 )]
+position = Vector2( 681.651, 381.838 )
+
+[node name="WallTop" type="StaticBody2D" parent="."]
+position = Vector2( 651.119, -17.3883 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallTop"]
+position = Vector2( -1.2193, 1.31247 )
+shape = SubResource( 1 )
+
+[node name="WallRight" type="StaticBody2D" parent="."]
+position = Vector2( 536.111, 849.375 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight"]
+position = Vector2( 820.347, -491.964 )
+shape = SubResource( 2 )
+
+[node name="WallBottom" type="StaticBody2D" parent="."]
+position = Vector2( 648.545, 732.735 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallBottom"]
+position = Vector2( -1.2193, 1.31247 )
+shape = SubResource( 1 )
+
+[node name="WallLeft" type="StaticBody2D" parent="."]
+position = Vector2( 498.111, 849.375 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallLeft"]
+position = Vector2( -570.216, -493.551 )
+shape = SubResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
